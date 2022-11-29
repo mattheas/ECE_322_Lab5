@@ -43,10 +43,8 @@ class TestD(unittest.TestCase):
         
         
     def test_updateData_method(self):
-        # create instance of Module D w/ mock Mod. F & Gobj
-        mock_ModuleF = Mock()
         mock_ModuleG = Mock()
-        test_ModuleD = ModuleD(mock_ModuleF, mock_ModuleG)
+        test_ModuleD = ModuleD(ModuleF(), mock_ModuleG)
         
         # populate test data array
         test_name = "danny"
@@ -83,10 +81,8 @@ class TestD(unittest.TestCase):
                 
                  
     def test_deleteData_method(self):
-        # create instance of Module D w/ mock Mod. F & Gobj
-        mock_ModuleF = Mock()
         mock_ModuleG = Mock()
-        test_ModuleD = ModuleD(mock_ModuleF, mock_ModuleG)
+        test_ModuleD = ModuleD(ModuleF(), mock_ModuleG)
         
         # populate test data array
         test_name = "danny"
