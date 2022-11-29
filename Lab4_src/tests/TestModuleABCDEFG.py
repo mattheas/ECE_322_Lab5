@@ -245,6 +245,81 @@ class TestA(unittest.TestCase):
                 break
         f1.close()
         f2.close()
+        
+        
+    def test_entire_system(self):
+        # no command given, assert it prints expected val to terminal
+        with open('./tests/TestABCDEFG_entire_system_no_command_actual.txt', 'w') as f1:
+            with redirect_stdout(f1):
+                self.test_ModuleA.run()
+        f1.close()
+        f1 = open("./tests/TestABCDEFG_entire_system_no_command_actual.txt", "r")
+        f2 = open("./tests/TestABCDEFG_entire_system_no_command_expected.txt", "r")
+        i = 0
+        for line1 in f1:
+            i+=1
+            for line2 in f2:
+                self.assertEqual(line1, line2)
+                break
+        f1.close()
+        f2.close()
+        
+        # help command, assert it prints expected val to terminal
+        with open('./tests/TestABCDEFG_entire_system_help_command_actual.txt', 'w') as f1:
+            with redirect_stdout(f1):
+                self.test_ModuleA.run("help")
+        f1.close()
+        f1 = open("./tests/TestABCDEFG_entire_system_help_command_actual.txt", "r")
+        f2 = open("./tests/TestABCDEFG_entire_system_help_command_expected.txt", "r")
+        i = 0
+        for line1 in f1:
+            i+=1
+            for line2 in f2:
+                self.assertEqual(line1, line2)
+                break
+        f1.close()
+        f2.close()
+        
+        # load data command, assert data is loaded into local data list
+        self.test_ModuleA.run("load","data.txt")
+        self.assertTrue(len(self.test_ModuleA._data) == 6)
+        self.assertEqual(self.test_ModuleA._data[0].name, "Jeremy")
+        self.assertEqual(self.test_ModuleA._data[0].number, "1234")
+        self.assertEqual(self.test_ModuleA._data[5].name, "Frank")
+        self.assertEqual(self.test_ModuleA._data[5].number, "123456789789")
+        
+        # update command is given, assert data is updated
+        self.test_ModuleA.run("update",3,"James","56789")
+        self.assertEqual(self.test_ModuleA._data[2].name, "James")
+        self.assertEqual(self.test_ModuleA._data[2].number, "56789")
+        
+        # add command is given, assert data list is updated with entry added to end of list
+        self.test_ModuleA.run( "add","Ahmed","477848")
+        self.assertEqual(self.test_ModuleA._data[6].name, "Ahmed")
+        self.assertEqual(self.test_ModuleA._data[6].number, "477848")
+        
+        # delete command is given, assert data list is updated at & +/- 1 index around the deleted entry
+        self.test_ModuleA.run( "delete",2)
+        self.assertTrue(len(self.test_ModuleA._data) == 6)
+        self.assertEqual(self.test_ModuleA._data[0].name, "Jeremy")
+        self.assertEqual(self.test_ModuleA._data[0].number, "1234")
+        self.assertEqual(self.test_ModuleA._data[1].name, "James")
+        self.assertEqual(self.test_ModuleA._data[1].number, "56789")
+        self.assertEqual(self.test_ModuleA._data[2].name, "JJJ")
+        self.assertEqual(self.test_ModuleA._data[2].number, "1234")
+        
+        # sort command is given, assert list is in correct order
+        self.test_ModuleA.run("sort")
+        self.assertEqual(self.test_ModuleA._data[0].name, "Ahmed")
+        self.assertEqual(self.test_ModuleA._data[1].name, "Frank")
+        self.assertEqual(self.test_ModuleA._data[2].name, "JJJ")
+        self.assertEqual(self.test_ModuleA._data[3].name, "James")
+        self.assertEqual(self.test_ModuleA._data[4].name, "Jeremy")
+        self.assertEqual(self.test_ModuleA._data[5].name, "Thomas")
+        
+        # exit command is given
+        self.test_ModuleA.run(" exit")
+
     
     
 if __name__ == '__main__':

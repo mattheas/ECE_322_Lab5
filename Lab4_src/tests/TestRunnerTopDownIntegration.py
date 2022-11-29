@@ -5,8 +5,15 @@ import unittest
 
 # import your tests modules (Apply integration testing method)
 import TestModuleA
-# import TestModuleB
-#import TestModuleC
+import TestModuleAB
+import TestModuleAC
+import TestModuleAD
+import TestModuleAE
+import TestModuleBF
+import TestModuleCF
+import TestModuleDF
+import TestModuleDG
+import TestModuleABCDEFG
 # .... Complete the missing imports
 
 
@@ -17,8 +24,15 @@ suite  = unittest.TestSuite()
 
 # add tests to the tests suite
 suite.addTests(loader.loadTestsFromModule(TestModuleA))
-# suite.addTests(loader.loadTestsFromModule(TestModuleB))
-# suite.addTests(loader.loadTestsFromModule(TestModuleC))
+suite.addTests(loader.loadTestsFromModule(TestModuleAB))
+suite.addTests(loader.loadTestsFromModule(TestModuleAC))
+suite.addTests(loader.loadTestsFromModule(TestModuleAD))
+suite.addTests(loader.loadTestsFromModule(TestModuleAE))
+suite.addTests(loader.loadTestsFromModule(TestModuleBF))
+suite.addTests(loader.loadTestsFromModule(TestModuleCF))
+suite.addTests(loader.loadTestsFromModule(TestModuleDF))
+suite.addTests(loader.loadTestsFromModule(TestModuleDG))
+suite.addTests(loader.loadTestsFromModule(TestModuleABCDEFG))
 # .... Complete the missing additions
 
 
