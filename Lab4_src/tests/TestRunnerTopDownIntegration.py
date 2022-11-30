@@ -28,10 +28,6 @@ suite.addTests(loader.loadTestsFromModule(TestModuleAB))
 suite.addTests(loader.loadTestsFromModule(TestModuleAC))
 suite.addTests(loader.loadTestsFromModule(TestModuleAD))
 suite.addTests(loader.loadTestsFromModule(TestModuleAE))
-suite.addTests(loader.loadTestsFromModule(TestModuleBF))
-suite.addTests(loader.loadTestsFromModule(TestModuleCF))
-suite.addTests(loader.loadTestsFromModule(TestModuleDF))
-suite.addTests(loader.loadTestsFromModule(TestModuleDG))
 suite.addTests(loader.loadTestsFromModule(TestModuleABCDEFG))
 # .... Complete the missing additions
 
